@@ -25,6 +25,9 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject[] panelesMenuPrincipal;
     [SerializeField] private Animation animaciones = null;
 
+    [SerializeField] private GameObject huella = null;
+    [SerializeField] private Transform[] posicionHuellas = null;
+    
     
     
 
@@ -41,6 +44,7 @@ public class MenuManager : MonoBehaviour
         Application.targetFrameRate = 120;
         Application.runInBackground = true;
 
+        huella.SetActive(false);
         DisablePanels();
         TextToNotSelectedColor();
         
@@ -54,39 +58,52 @@ public class MenuManager : MonoBehaviour
 
     
 
-    public void ClickJugar()
+    public async void ClickJugar()
     { 
         ShowFX(positionsParticleMenuPrincipal[0].anchoredPosition);
+        await UniTask.Delay(TimeSpan.FromMilliseconds(particleMenuClicked.main.duration + 100 ));
+        ShowFX_Huella(posicionHuellas[0].position);
+        
+
     
     }
 
 
-    public void ClickControles()
+    public async void ClickControles()
     {
         ShowFX(positionsParticleMenuPrincipal[1].anchoredPosition);
+        await UniTask.Delay(TimeSpan.FromMilliseconds(particleMenuClicked.main.duration ));
+        ShowFX_Huella(posicionHuellas[1].position);
+
+
+        
     
     }
 
 
-    public void ClickConfiguracion()
+    public async void ClickConfiguracion()
     { 
         ShowFX(positionsParticleMenuPrincipal[2].anchoredPosition);
+        await UniTask.Delay(TimeSpan.FromMilliseconds(particleMenuClicked.main.duration ));
+        ShowFX_Huella(posicionHuellas[2].position);
     
     }
 
-    public void ClickCreditos()
+    public async void ClickCreditos()
     { 
         ShowFX(positionsParticleMenuPrincipal[3].anchoredPosition);
-    
+        await UniTask.Delay(TimeSpan.FromMilliseconds(particleMenuClicked.main.duration ));
+        ShowFX_Huella(posicionHuellas[3].position);
     }
 
     public async void ClickSalir()
     { 
     
         ShowFX(positionsParticleMenuPrincipal[4].anchoredPosition);
-
-        await UniTask.Delay(TimeSpan.FromMilliseconds(600));
-
+        await UniTask.Delay(TimeSpan.FromMilliseconds(particleMenuClicked.main.duration ));
+        ShowFX_Huella(posicionHuellas[4].position);
+        
+        await UniTask.Delay(TimeSpan.FromSeconds(1));
 
         #if (UNITY_EDITOR)
             UnityEditor.EditorApplication.isPlaying = false;
@@ -226,5 +243,15 @@ public class MenuManager : MonoBehaviour
         particleMenuClicked.Play();
 
     }
+
+    private async void ShowFX_Huella(Vector3 position)
+    { 
+        huella.transform.position = position;
+        huella.SetActive(true);
+        await UniTask.Delay(TimeSpan.FromMilliseconds(1300));
+        huella.SetActive(false);
+    
+    }
+
 
 }
