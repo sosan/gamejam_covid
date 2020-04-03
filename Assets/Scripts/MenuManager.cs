@@ -28,10 +28,6 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject huella = null;
     [SerializeField] private Transform[] posicionHuellas = null;
     
-    
-    
-
-
     [Header("Menu Opciones")]
     [SerializeField] private RectTransform punteroOpcionesTransform = null;
 
@@ -51,8 +47,6 @@ public class MenuManager : MonoBehaviour
         animaciones.Play("MenuPrincipalAparecer");
         await UniTask.Delay(TimeSpan.FromSeconds(animaciones.GetClip("MenuPrincipalAparecer").length));
         
-        //panelesMenuPrincipal[1].SetActive(true);
-
 
     }
 
@@ -72,11 +66,12 @@ public class MenuManager : MonoBehaviour
     public async void ClickControles()
     {
         ShowFX(positionsParticleMenuPrincipal[1].anchoredPosition);
-        await UniTask.Delay(TimeSpan.FromMilliseconds(particleMenuClicked.main.duration ));
+        await UniTask.Delay(TimeSpan.FromMilliseconds(particleMenuClicked.main.duration + 100));
         ShowFX_Huella(posicionHuellas[1].position);
+        await UniTask.Delay(TimeSpan.FromSeconds(1));
 
-
-        
+        animaciones.Play("Menu_ControlesAparecer");
+        await UniTask.Delay(TimeSpan.FromSeconds(animaciones.GetClip("Menu_ControlesAparecer").length));
     
     }
 
@@ -84,23 +79,34 @@ public class MenuManager : MonoBehaviour
     public async void ClickConfiguracion()
     { 
         ShowFX(positionsParticleMenuPrincipal[2].anchoredPosition);
-        await UniTask.Delay(TimeSpan.FromMilliseconds(particleMenuClicked.main.duration ));
+        await UniTask.Delay(TimeSpan.FromMilliseconds(particleMenuClicked.main.duration + 100));
         ShowFX_Huella(posicionHuellas[2].position);
+        await UniTask.Delay(TimeSpan.FromSeconds(1));
+
+        animaciones.Play("Menu_ConfiguracionAparacer");
+        await UniTask.Delay(TimeSpan.FromSeconds(animaciones.GetClip("Menu_ConfiguracionAparacer").length));
+        
     
     }
 
     public async void ClickCreditos()
     { 
         ShowFX(positionsParticleMenuPrincipal[3].anchoredPosition);
-        await UniTask.Delay(TimeSpan.FromMilliseconds(particleMenuClicked.main.duration ));
+        await UniTask.Delay(TimeSpan.FromMilliseconds(particleMenuClicked.main.duration + 100));
         ShowFX_Huella(posicionHuellas[3].position);
+        await UniTask.Delay(TimeSpan.FromSeconds(1));
+
+        animaciones.Play("Menu_CreditosAparecer");
+        await UniTask.Delay(TimeSpan.FromSeconds(animaciones.GetClip("Menu_CreditosAparecer").length));
+        
+
     }
 
     public async void ClickSalir()
     { 
     
         ShowFX(positionsParticleMenuPrincipal[4].anchoredPosition);
-        await UniTask.Delay(TimeSpan.FromMilliseconds(particleMenuClicked.main.duration ));
+        await UniTask.Delay(TimeSpan.FromMilliseconds(particleMenuClicked.main.duration + 100 ));
         ShowFX_Huella(posicionHuellas[4].position);
         
         await UniTask.Delay(TimeSpan.FromSeconds(1));
