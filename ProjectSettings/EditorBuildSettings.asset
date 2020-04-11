@@ -4,5 +4,20 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Loading.unity
+    guid: acc3e8dca345f504bb3bb7dbee52ca50
+  - enabled: 1
+    path: Assets/Scenes/testeo_Main_joseluis.unity
+    guid: 6fcb1b824d3b1fc4382393946ba50cf2
+  - enabled: 1
+    path: Assets/Snake/Scenes/Snake.unity
+    guid: 527cb496369756b4aaca115d6138e591
+  - enabled: 1
+    path: Assets/Cazaratones/Scenes/Cazaratones.unity
+    guid: 7889cda7b37308040b1dfa9d63b4544d
+  - enabled: 1
+    path: Assets/Scenes/testeo_Laberinto_joseluis.unity
+    guid: f7cc4f0ed821d5d468bf62fa759d0407
   m_configObjects: {}

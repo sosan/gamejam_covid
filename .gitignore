@@ -16,7 +16,7 @@ Assets/AssetStoreTools*
 [Dd]esktop.ini
 
 
-# Visual Studio cache directory
+
 .vs/
 .collab/
 
@@ -44,7 +44,6 @@ ExportedObj/
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
 *.stackdump
-
 
 
 # Builds

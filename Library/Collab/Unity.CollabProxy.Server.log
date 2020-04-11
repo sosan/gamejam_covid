@@ -1,0 +1,12 @@
+Starting proxy server
+10/04/2020 19:15:28 :: RepositoryExists handler took 438,5318 ms
+10/04/2020 19:15:29 :: InitializeRepository handler took 80,0338 ms
+10/04/2020 19:15:35 :: SetCurrentHeadAsync handler took 611,3423 ms
+10/04/2020 19:15:37 :: SetCurrentHeadAsync handler took 252,8333 ms
+11/04/2020 0:32:32 :: RepositoryExists handler took 4,4337 ms
+11/04/2020 0:32:33 :: InitializeRepository handler took 8,427 ms
+11/04/2020 0:32:34 :: SetCurrentHeadAsync handler took 885,2241 ms
+11/04/2020 0:34:15 :: RepositoryExists handler took 2,9948 ms
+11/04/2020 0:34:15 :: InitializeRepository handler took 4,1941 ms
+11/04/2020 0:34:15 :: SetCurrentHeadAsync handler took 258,5111 ms
+Stopping proxy server

@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: fd51be9559f5865429507a2291c2de97
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Modern Brush
+  fontNames:
+  - Modern Brush
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: f44b9c4a199e4dd4688959bbb5f3027a, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,5 @@
+sceneSetups:
+- path: Assets/Scenes/testeo_Laberinto_joseluis.unity
+  isLoaded: 1
+  isActive: 1
+  isSubScene: 0
