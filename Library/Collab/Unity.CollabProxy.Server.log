@@ -17,3 +17,4 @@ Starting proxy server
 12/04/2020 16:27:49 :: GetWorkingDirectoryChangesAsync handler took 5889,6393 ms
 12/04/2020 16:27:49 :: SetCurrentHeadAsync handler took 195,8627 ms
 12/04/2020 16:28:07 :: GetWorkingDirectoryChangesAsync handler took 11721,0204 ms
+Stopping proxy server
