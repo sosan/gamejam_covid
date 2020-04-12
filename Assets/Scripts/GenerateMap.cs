@@ -8,11 +8,11 @@ public class GenerateMap : MonoBehaviour
     [SerializeField] private Texture2D mapa = null;
     [SerializeField] private GameObject prefabCuadrado = null;
     [SerializeField] private GameObject parentMapa = null;
+    [SerializeField] private float prefabCellSize = 0.48f;
+    [SerializeField] private int cellPixelSizeInTexture = 1;
 
-    float posicionX = 0;
-    float posicionY = 0;
+    [SerializeField] private Color colorRejillas = Color.white;
 
-    // Start is called before the first frame update
     void Start()
     {
         GenerarMapa();
@@ -22,27 +22,48 @@ public class GenerateMap : MonoBehaviour
     private void GenerarMapa()
     { 
 
-        for (int x = 0; x < mapa.width; x += 48)
+        Vector2 spawnPos = Vector2.zero;
+
+        for (int x = 0; x < mapa.width; x += cellPixelSizeInTexture)
         { 
             
-            for (int y = 0; y <  mapa.height; y += 48)
+            for (int y = 0; y <  mapa.height; y += cellPixelSizeInTexture)
             { 
                 
-                GenerarCuadro(x,y);
+                GenerarCuadro(spawnPos, x, y);
+                spawnPos.y += prefabCellSize;
             
             }
+
+            spawnPos.y = 0;
+            spawnPos.x += prefabCellSize;
         }
     
     }
 
-    private void GenerarCuadro(int x, int y)
+    private void GenerarCuadro(Vector2 pos, int keyPosx, int keyPosy)
     { 
-        var colorPixel = mapa.GetPixel(x, y);
+        var colorPixel = mapa.GetPixel(keyPosx, keyPosy);
+        
+        // pixel con alpha no se pinta
         if (colorPixel.a == 0) return;
+
+        //TODO: segun el pixel color, instanciar el tipo de prefabs
+        //if (colorPixel == colorRejillas)
+        //{ 
+        
+        
+        //}
+
+        if (colorPixel == Color.black)
+        { 
+            var obj = GameObject.Instantiate(prefabCuadrado, pos, Quaternion.identity, parentMapa.transform);
+            obj.name = "celda_x=" + keyPosx + "_y=" + keyPosy;
        
-        var obj = GameObject.Instantiate(prefabCuadrado, new Vector3(x / 48, y / 48, 0), Quaternion.identity, parentMapa.transform);
-       
-        obj.name = "cuadrado" + x + "_" + y;
+        
+        }
+
+        
     
     }
 

@@ -1,12 +1,19 @@
 Starting proxy server
-10/04/2020 19:15:28 :: RepositoryExists handler took 438,5318 ms
-10/04/2020 19:15:29 :: InitializeRepository handler took 80,0338 ms
-10/04/2020 19:15:35 :: SetCurrentHeadAsync handler took 611,3423 ms
-10/04/2020 19:15:37 :: SetCurrentHeadAsync handler took 252,8333 ms
-11/04/2020 0:32:32 :: RepositoryExists handler took 4,4337 ms
-11/04/2020 0:32:33 :: InitializeRepository handler took 8,427 ms
-11/04/2020 0:32:34 :: SetCurrentHeadAsync handler took 885,2241 ms
-11/04/2020 0:34:15 :: RepositoryExists handler took 2,9948 ms
-11/04/2020 0:34:15 :: InitializeRepository handler took 4,1941 ms
-11/04/2020 0:34:15 :: SetCurrentHeadAsync handler took 258,5111 ms
-Stopping proxy server
+12/04/2020 15:53:00 :: RepositoryExists handler took 249,7657 ms
+12/04/2020 15:53:00 :: InitializeRepository handler took 45,5892 ms
+12/04/2020 15:53:05 :: SetCurrentHeadAsync handler took 563,9336 ms
+12/04/2020 15:53:07 :: SetCurrentHeadAsync handler took 144,4243 ms
+12/04/2020 15:57:27 :: RepositoryExists handler took 2,1098 ms
+12/04/2020 15:57:27 :: InitializeRepository handler took 4,4964 ms
+12/04/2020 15:57:27 :: SetCurrentHeadAsync handler took 249,0501 ms
+12/04/2020 15:57:37 :: RepositoryExists handler took 2,139 ms
+12/04/2020 15:57:37 :: InitializeRepository handler took 8,0169 ms
+12/04/2020 15:57:37 :: SetCurrentHeadAsync handler took 180,0108 ms
+12/04/2020 16:27:35 :: GetWorkingDirectoryChangesAsync handler took 4295,7306 ms
+12/04/2020 16:27:35 :: SetCurrentHeadAsync handler took 375,9908 ms
+12/04/2020 16:27:38 :: UpdateCachedChangesAsync handler took 39,9502 ms
+12/04/2020 16:27:38 :: SetCurrentHeadAsync handler took 140,0915 ms
+12/04/2020 16:27:43 :: SetCurrentHeadAsync handler took 717,2053 ms
+12/04/2020 16:27:49 :: GetWorkingDirectoryChangesAsync handler took 5889,6393 ms
+12/04/2020 16:27:49 :: SetCurrentHeadAsync handler took 195,8627 ms
+12/04/2020 16:28:07 :: GetWorkingDirectoryChangesAsync handler took 11721,0204 ms

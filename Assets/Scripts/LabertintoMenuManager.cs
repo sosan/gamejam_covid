@@ -40,6 +40,18 @@ public class LabertintoMenuManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textoContadorBateriasGanador = null;
     [SerializeField] private TextMeshProUGUI textoContadorBarrilGanador = null;
 
+    [Header("Letras")]
+    [SerializeField] private GameObject letrasPrefab = null;
+    [SerializeField] private Transform posicionLetras = null;
+
+    [SerializeField] private GameObject letrasPuntosPrefab = null;
+    [SerializeField] private Transform posicionPuntos = null;
+
+    
+    [SerializeField] private GameObject letrasMiniPuntosPrefab = null;
+    [SerializeField] private Transform posicionPuntosLatas = null;
+    [SerializeField] private Transform posicionPuntosBaterias = null;
+    [SerializeField] private Transform posicionPuntosBarril = null;
 
 
     [SerializeField] private TextMeshProUGUI textoPuntuaje = null;
@@ -51,8 +63,12 @@ public class LabertintoMenuManager : MonoBehaviour
     public bool terminadoNivel = false;
     private int currentNivel = 0;
 
+    private bool isClicked = false;
+
     private void Awake()
     {
+
+        
         panelGameOver.SetActive(false);
         menuOpciones.SetActive(false);
         panelPausa.SetActive(false);
@@ -94,9 +110,9 @@ public class LabertintoMenuManager : MonoBehaviour
         player.isDead = false;
         
 
-        textoContadorLatas.text = "+ " + puntuajeLatas.ToString();
-        textoContadorBarril.text = "+ " + puntuajeBarril.ToString();
-        textoContadorBaterias.text = "+ " + puntuajeBaterias.ToString();
+        textoContadorLatas.text = "x 00";
+        textoContadorBarril.text = "x 00";
+        textoContadorBaterias.text = "x 00";
     
     
     }
@@ -121,6 +137,10 @@ public class LabertintoMenuManager : MonoBehaviour
     public async void JugarNivel(int nivel)
     { 
         
+        if (isClicked == true) return;
+
+        isClicked = true;
+
         player.gameObject.SetActive(false);
         currentNivel = nivel;
         puntuajeLatas = 0;
@@ -129,9 +149,11 @@ public class LabertintoMenuManager : MonoBehaviour
 
         terminadoNivel = false;
         isGameOver = false;
-        textoContadorLatas.text = puntuajeLatas.ToString();
-        textoContadorBarril.text = puntuajeBarril.ToString();
-        textoContadorBaterias.text = puntuajeBaterias.ToString();
+
+        textoContadorLatas.text = "x " + puntuajeLatas.ToString("D2");
+        textoContadorBaterias.text = "x " + puntuajeBaterias.ToString("D2");
+        textoContadorBarril.text = "x " + puntuajeBarril.ToString("D2");
+
         textoCrono.text = "TIEMPO: 00:00";
         textoPuntuaje.text = "PUNTOS: 000";
         player.isDead = false;
@@ -172,18 +194,21 @@ public class LabertintoMenuManager : MonoBehaviour
 
         if (nivel == 1)
         { 
-            InitCrono(180); //180
+            InitCrono(60); //180
         }
         else
         { 
-            InitCrono(180);
+            InitCrono(60);
         
         }
+       
 
         objetosFase[nivel].SetActive(true);
         player.gridMoveDirection = Vector2Int.zero;
         playerPrefab.transform.position = posicionesPlayer[nivel].position;
         player.gameObject.SetActive(true);
+
+        isClicked = false;
     
     }
 
@@ -202,6 +227,8 @@ public class LabertintoMenuManager : MonoBehaviour
 
         terminadoCrono.Value = false;
 
+        if (crono != null) crono.Dispose();
+
         crono = Observable.Timer(
         TimeSpan.FromSeconds(0), //esperamos 1 segundos 
         TimeSpan.FromSeconds(1), Scheduler.MainThread).Do(x => { }).
@@ -218,13 +245,13 @@ public class LabertintoMenuManager : MonoBehaviour
             if (tiempoCurrentBatalla < 0)
             { 
                 terminadoCrono.Value = true;
-                print("terminado");
                 if (crono != null ) crono.Dispose();
             
                 player.isDead = true;
                 panelGameOver.SetActive(true);
                 tiempoCurrentBatalla = 0;
                 isGameOver = true;
+                isClicked = false;
             
             }
 
@@ -239,6 +266,7 @@ public class LabertintoMenuManager : MonoBehaviour
             panelGameOver.SetActive(true);
             tiempoCurrentBatalla = 0;
             isGameOver = true;
+            isClicked = false;
             
 
         }).AddTo(this.gameObject);
@@ -250,6 +278,12 @@ public class LabertintoMenuManager : MonoBehaviour
     { 
         
         tiempoCurrentBatalla += tiempoAnadido;
+
+        var letras = GameObject.Instantiate(letrasPrefab, posicionLetras);
+        letras.GetComponent<TextMeshProUGUI>().text = "<color=green>+ " + tiempoAnadido.ToString() + "  SEGUNDOS</color>";
+        Destroy(letras, 5);
+
+
         
     }
 
@@ -289,9 +323,9 @@ public class LabertintoMenuManager : MonoBehaviour
     public void SetGanador()
     {
         terminadoNivel = true;
-        textoContadorLatasGanador.text = "+ " + puntuajeLatas.ToString();
-        textoContadorBateriasGanador.text = "+ " + puntuajeBaterias.ToString();
-        textoContadorBarrilGanador.text = "+ " + puntuajeBarril.ToString();
+        textoContadorLatasGanador.text = "x " + puntuajeLatas.ToString("D2");
+        textoContadorBateriasGanador.text = "x " + puntuajeBaterias.ToString("D2");
+        textoContadorBarrilGanador.text = "x " + puntuajeBarril.ToString("D2");
 
 
         panelGanador.SetActive(true);
@@ -311,11 +345,13 @@ public class LabertintoMenuManager : MonoBehaviour
         PlayerPrefs.SetInt("puntuaje", puntuajeTotal);
 
         puntuajeLatas++;
-        textoContadorLatas.text = "+ " + puntuajeLatas.ToString();
+        textoContadorLatas.text = "x " + puntuajeLatas.ToString("D2");
         
-        int puntuajeSuma = puntuajeLatas + puntuajeBaterias + puntuajeBarril;
-        textoPuntuaje.text = "PUNTOS: " + puntuajeSuma.ToString("N0");
-        
+        var letras = GameObject.Instantiate(letrasMiniPuntosPrefab, posicionPuntosLatas);
+        letras.GetComponent<TextMeshProUGUI>().text = "<color=green>+ 1 LATA</color>";
+        Destroy(letras, 5);
+
+        ActualizarPuntuajeTotal(1);
     
     }
 
@@ -326,10 +362,15 @@ public class LabertintoMenuManager : MonoBehaviour
         PlayerPrefs.SetInt("puntuaje", puntuajeTotal);
 
         puntuajeBaterias++;
-        textoContadorBaterias.text = "+ " + puntuajeBaterias.ToString();
+        textoContadorBaterias.text = "x " + puntuajeBaterias.ToString("D2");
         
-        int puntuajeSuma = puntuajeLatas + puntuajeBaterias + puntuajeBarril;
-        textoPuntuaje.text = "PUNTOS: " + puntuajeSuma.ToString("N0");
+        var letras = GameObject.Instantiate(letrasMiniPuntosPrefab, posicionPuntosBaterias);
+        letras.GetComponent<TextMeshProUGUI>().text = "<color=green>+ 1 BATERIA</color>";
+        Destroy(letras, 5);
+
+
+
+        ActualizarPuntuajeTotal(1);
         AmpliarCrono(30);
     
     }
@@ -342,12 +383,30 @@ public class LabertintoMenuManager : MonoBehaviour
         PlayerPrefs.SetInt("puntuaje", puntuajeTotal);
 
         puntuajeBarril++;
-        textoContadorBarril.text = "+ " + puntuajeBaterias.ToString();
+        textoContadorBarril.text = "x " + puntuajeBarril.ToString("D2");
         
-        int puntuajeSuma = puntuajeLatas + puntuajeBaterias + puntuajeBarril;
-        textoPuntuaje.text = "PUNTOS: " + puntuajeSuma.ToString("N0");
-    
+
+        var letras = GameObject.Instantiate(letrasMiniPuntosPrefab, posicionPuntosBarril);
+        letras.GetComponent<TextMeshProUGUI>().text = "<color=green>+ 1 BARRIL</color>";
+        Destroy(letras, 5);
+
+
+        ActualizarPuntuajeTotal(1);
         AmpliarCrono(60);
+    
+    }
+
+
+    private void ActualizarPuntuajeTotal(ushort puntoParcial)
+    { 
+    
+        int puntuajeSuma = puntuajeLatas + puntuajeBaterias + puntuajeBarril;
+        textoPuntuaje.text = "PUNTOS: " + puntuajeSuma.ToString("D3");
+    
+        var letras = GameObject.Instantiate(letrasPuntosPrefab, posicionPuntos);
+        letras.GetComponent<TextMeshProUGUI>().text = "<color=green>+ " + puntoParcial.ToString() + " PUNTO</color>";
+        Destroy(letras, 5);
+    
     
     }
 

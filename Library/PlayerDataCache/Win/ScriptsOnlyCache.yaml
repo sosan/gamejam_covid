@@ -728,7 +728,7 @@ ScriptsOnlyBuild:
     className: PixelPerfectCamera
   - hash:
       serializedVersion: 2
-      Hash: 4ced422fff39b466ac028b89993d06ea
+      Hash: d559c870cef7c0a6da8f42815c4aa4b5
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LabertintoMenuManager
@@ -1112,7 +1112,7 @@ ScriptsOnlyBuild:
     className: ObservableTrigger2DTrigger
   - hash:
       serializedVersion: 2
-      Hash: 3586da65ac4e87da0685052eda40ea60
+      Hash: f48c859dbeb3cc080f3abc9e5189c58b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GenerateMap
